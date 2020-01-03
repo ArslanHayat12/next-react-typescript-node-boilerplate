@@ -17,20 +17,20 @@ const env = config().parsed;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// express-winston logger makes sense BEFORE the router
+// express-winston logger
 app.use(
   expressWinston.logger({
-    transports: [new winston.transports.Console()],
+    transports: [new winston.transports.File({ filename: "Logs.log" })],
     format: winston.format.combine(winston.format.colorize(), winston.format.json())
   })
 );
 
 app.use("/", Routes);
 
-// express-winston errorLogger makes sense AFTER the router.
+// express-winston errorLogger .
 app.use(
   expressWinston.errorLogger({
-    transports: [new winston.transports.Console()],
+    transports: [new winston.transports.File({ filename: "Logs.log" })],
     format: winston.format.combine(winston.format.colorize(), winston.format.json())
   })
 );
