@@ -22,3 +22,15 @@ The `package.json` does already contain some useful scripts.
 - webpack
 - Helmet
 
+## Folder Structure
+- .env => Contains all enivorment variables
+- src => contains whole source code
+    - app.ts => Entry Point
+    - routes => contains routes with their action methods that was present in controller
+    - controllers => Functionality against each route was present here.
+    - services => Used to do some specific task and it is linked with controller.
+    - constants => Constants that was present in whole Apllication
+    - types => contains whole typings of  application
+    - config => contains some configurations like db configs
+    - utils => all helper functions that was used in the application
+    - __tests__ => contains test cases 
