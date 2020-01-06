@@ -5,15 +5,15 @@
   "main": "dist/bundle.js",
   "license": "MIT",
   "scripts": {
-    "prebuild": "yarn clear && tslint -c tslint.json -p tsconfig.json --fix",
     "build": "webpack",
     "postbuild": "yarn test",
     "prestart": "yarn build",
     "start": "node .",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "dev": "tsc",
-    "postdev": "node dist/index.js",
-    "clear": "rm -r dist/* || true"
+    "postdev": "node dist/bundle.js",
+    "clear": "rm -r dist/* || true",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
   },
   "dependencies": {
     "@types/errorhandler": "^0.0.32",
@@ -26,6 +26,7 @@
     "express-winston": "^4.0.2",
     "helmet": "^3.21.2",
     "nodemon": "^2.0.2",
+    "npm": "^6.13.4",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -35,7 +36,12 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^13.1.2",
     "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
     "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
     "mocha": "^6.2.2",
     "ts-loader": "^6.2.1",
     "ts-node": "^8.5.4",

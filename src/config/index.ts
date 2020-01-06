@@ -1,2 +1,6 @@
-export const HOST = "localhost";
-export const PORT = 8080;
+import { config } from 'dotenv';
+config();
+export const development = {
+	host: process.env.host || 'localhost',
+	port: process.env.PORT || 3000
+};
