@@ -33,9 +33,19 @@ async function start() {
     return handle(req, res);
   });
 
+  app.get("/users", async (req, res, next) => {
+    try {
+      const actualPage = "/users";
+      console.log("I am here");
+      nextApp.render(req, res, actualPage);
+    } catch (e) {
+      next(e);
+    }
+  });
+
   app.listen(development.port, () => {
     console.log(`server started at http://${development.host}:${development.port}`);
   });
-  return nextApp;
+  return app;
 }
-export const nextApp = start();
+export const app = start();
