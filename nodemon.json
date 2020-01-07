@@ -1,6 +1,6 @@
 {
-  "watch": ["src"],
-  "ext": ".ts,.js",
-  "ignore": [],
-  "exec": "ts-node ./src/app.ts"
+  "watch": ["server/**/*.ts"],
+  "execMap": {
+    "ts": "ts-node --compiler-options {\"\"\"module\"\"\":\"\"\"commonjs\"\"\"}"
+  }
 }

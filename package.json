@@ -5,7 +5,7 @@
   "main": "dist/bundle.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon src/app.ts",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "node .next/production-server/app.js",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
