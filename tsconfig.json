@@ -23,7 +23,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "module": "CommonJS"
+    "module": "esnext"
   },
   "exclude": [
     "node_modules"

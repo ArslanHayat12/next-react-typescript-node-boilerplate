@@ -12,6 +12,7 @@ async function start() {
   const nextApp = next({ dev });
   const app = express();
   await nextApp.prepare();
+  const handle = nextApp.getRequestHandler();
 
   // Use helmet to secure Express with various HTTP headers
   app.use(helmet());
@@ -28,24 +29,13 @@ async function start() {
   // express-winston errorLogger .
   app.use(logger());
 
-  app.get("/*", async (req, res, next) => {
-    try {
-      nextApp.render(req, res, "/");
-    } catch (e) {
-      next(e);
-    }
-  });
-
-  app.get("/home", async (req, res, next) => {
-    try {
-      nextApp.render(req, res, "/");
-    } catch (e) {
-      next(e);
-    }
+  app.get("*", (req, res) => {
+    return handle(req, res);
   });
 
   app.listen(development.port, () => {
     console.log(`server started at http://${development.host}:${development.port}`);
   });
+  return nextApp;
 }
-start();
+export const nextApp = start();
