@@ -1,16 +1,36 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "jsx": "preserve",
     "esModuleInterop": true,
-    "target": "ES2017",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*"]
-    }
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "preserveConstEnums": true,
+    "pretty": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6",
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "module": "CommonJS"
   },
-  "include": ["src/**/*"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/**/**/*.ts",
+    "**/**/**/*.tsx"
+  ]
 }

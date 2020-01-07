@@ -1,30 +1,51 @@
 import bodyParser from "body-parser";
 import express from "express";
+import next from "next";
 import helmet from "helmet";
-import { development } from "./config";
-import { logger } from "./utils";
-import { user } from "./routes/user";
-import { task } from "./routes/task";
+import { development } from "./server/config";
+import { logger } from "./server/utils";
+import { user } from "./server/routes/user";
+import { task } from "./server/routes/task";
 
-const app = express();
+async function start() {
+  const dev = process.env.NODE_ENV !== "production";
+  const nextApp = next({ dev });
+  const app = express();
+  await nextApp.prepare();
 
-// Use helmet to secure Express with various HTTP headers
-app.use(helmet());
+  // Use helmet to secure Express with various HTTP headers
+  app.use(helmet());
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
 
-// express-winston logger
-app.use(logger());
+  // express-winston logger
+  app.use(logger());
 
-app.use("/app1", user);
-app.use("/app2", task);
+  app.use("/app1", user);
+  app.use("/app2", task);
 
-// express-winston errorLogger .
-app.use(logger());
+  // express-winston errorLogger .
+  app.use(logger());
 
-app.get("/", (req, res) => res.send("Hit /user or /task"));
+  app.get("/*", async (req, res, next) => {
+    try {
+      nextApp.render(req, res, "/");
+    } catch (e) {
+      next(e);
+    }
+  });
 
-app.listen(development.port, () => {
-  console.log(`server started at http://${development.host}:${development.port}`);
-});
+  app.get("/home", async (req, res, next) => {
+    try {
+      nextApp.render(req, res, "/");
+    } catch (e) {
+      next(e);
+    }
+  });
+
+  app.listen(development.port, () => {
+    console.log(`server started at http://${development.host}:${development.port}`);
+  });
+}
+start();
