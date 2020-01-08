@@ -4,8 +4,8 @@ import next from "next";
 import helmet from "helmet";
 import { development } from "./server/config";
 import { logger } from "./server/utils";
-import { user } from "./server/routes/user";
-import { task } from "./server/routes/task";
+import { user } from "./server/controllers/user";
+import { task } from "./server/controllers/task";
 
 async function start() {
   const dev = process.env.NODE_ENV !== "production";
