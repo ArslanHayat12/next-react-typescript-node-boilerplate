@@ -29,20 +29,6 @@ async function start() {
   // express-winston errorLogger .
   app.use(logger());
 
-  app.get("*", (req, res) => {
-    return handle(req, res);
-  });
-
-  app.get("/users", async (req, res, next) => {
-    try {
-      const actualPage = "/users";
-      console.log("I am here");
-      nextApp.render(req, res, actualPage);
-    } catch (e) {
-      next(e);
-    }
-  });
-
   app.listen(development.port, () => {
     console.log(`server started at http://${development.host}:${development.port}`);
   });
