@@ -29,6 +29,16 @@ async function start() {
   // express-winston errorLogger .
   app.use(logger());
 
+  //If we refresh page with route tasks/1 it will render else 404
+  //Just for checking we can remove it
+  app.get("/tasks/1", (req, res) => {
+    return nextApp.render(req, res, "/");
+  });
+
+  app.all("*", (req, res) => {
+    return handle(req, res);
+  });
+
   app.listen(development.port, () => {
     console.log(`server started at http://${development.host}:${development.port}`);
   });

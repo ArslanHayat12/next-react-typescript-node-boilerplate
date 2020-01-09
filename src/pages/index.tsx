@@ -1,7 +1,7 @@
 import Layout from "../components/MyLayout";
 import fetch from "isomorphic-unfetch";
 
-export const config = { amp: "hybrid" };
+// export const config = { amp: "hybrid" };
 const Index = props => (
   <Layout>
     <h1>{JSON.stringify(props.data, null, 3)}</h1>
